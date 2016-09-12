@@ -12,3 +12,13 @@
   decode(字段,条件1,结果1,条件2,结果2,其他条件时的结果)
   例:decode(sign(product_num),'-1',0,product_num):如果product_num的数量小于0,则字段值赋为0,大于等于0的不作处理
 6.sysdate,sys_guid():插入系统时间,自动生成uuid
+7.效率比较高的sql分页
+  不带排序:select temp.* from (select rownum as rowno,tb.* from tablename tb where rowno<=10*K) temp where temp.rowno>10*(K-1)
+  带有排序的:
+    select temp2.* from 
+      (select temp.* from 
+        (select rownum as rowno,tb.* from 
+          tablename tb order by tb.sort asc|desc
+        ) temp where temp.rowno<=10*K
+      ) temp2 where temp2.rowno>10*(K-1)
+8.
