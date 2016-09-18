@@ -1,1 +1,12 @@
-
+1.attr和prop的使用心得
+  对于html标签的原生的属性(如class,id,src...)，使用prop方法,对于我们后来对标签上添加的非原生属性使用attr方法
+2.获取select的选中值
+  $("#id|.class option:selected").text();//获取选中的文本值
+  $("#id|.class option:selected").val(); //获取选中的值
+3.radio checkbox选中
+  $("#id|.class").attr("checked","checked");
+  $("#id|.class").attr("checked",true);
+  jq 1.6+还可以这样写:
+  $("#id|.class").prop("checked",true);//返回true/false;
+4.clear是document的一个方法,所以自己定义的方法不可使用这个名字
+5.
