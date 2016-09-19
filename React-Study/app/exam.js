@@ -78,6 +78,11 @@
   但是若果需要获取真实的DOM节点,需要用到ref属性.
   有关于props和state的关系,可以看看这篇blog:
   http://blog.csdn.net/code_for_free/article/details/50762171
+  
+  getInitialState用于定义初始状态(是一个对象),可以通过this.state获取这个对象,this.setState方法用于修改状态值
+  每次修改后自动调用this.render方法,再次渲染组件
+  this.props和this.state都用于描述组件的特性,较为粗浅的区分方法是this.props表示那些一旦定义就不再改变的特性
+  this.state是会随着用户互动而产生变化的特性
 */
   var SearchInput=React.createClass({
     getInitialState:function(){
