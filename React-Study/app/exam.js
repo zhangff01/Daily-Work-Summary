@@ -50,3 +50,63 @@
     }
   });
   ReactDOM.render(<MyTitle title="NBA" />,document.body);
+/*
+  react学习(三)
+  getDefaultProps来设置组件属性的默认值
+*/
+  var SearchPlugin=React.createClass({
+    getDefaultProps:function(){
+      return {
+        value:"iphone 7"
+      };
+    },
+    render:function(){
+      return (
+          <div>
+            <input type="text" value={this.props.value} />
+            <button>搜索</button>
+          </div>
+        );
+    }
+  });
+  ReactDOM.render(<SearchPlugin />,document.getElementById("container"));
+/*
+  react学习(四)
+  获取真实的DOM节点
+  组件不是真实的DOM节点，而是存在于内存之中的一种数据结构，叫做虚拟DOM(virtual DOM).
+  只有把它插入文档以后才会变成真实的DOM.所有的DOM变得都是先在虚拟DOM上发生,然后通过DOM diff算法反应到真实的DOM上
+  但是若果需要获取真实的DOM节点,需要用到ref属性.
+  有关于props和state的关系,可以看看这篇blog:
+  http://blog.csdn.net/code_for_free/article/details/50762171
+*/
+  var SearchInput=React.createClass({
+    getInitialState:function(){
+      return {
+        val:"iphone 7"
+      };
+    },
+    handleFocus:function(){
+      var inputnode=ReactDOM.findDOMNode(this.refs.sin);//网上说this.refs.sin就可以取到DOM节点，我试了不行，后来发现可能是版本的原因
+      inputnode.style.borderColor="#2E8B57";
+      this.setState({
+        val:""
+      });
+    },
+    handleBlur:function(){
+      var inputnode=ReactDOM.findDOMNode(this.refs.sin);
+      inputnode.style.borderColor="#DCDCDC";
+      this.setState({
+        val:"iphone 7"
+      });
+    },
+    render:function(){
+      return (
+          <div>
+            <input type="text" ref="sin" value={this.state.val} onFocus={this.handleFocus} onBlur={this.handleBlur} />
+            <button>搜索</button>
+          </div>
+        );
+    }
+  });
+  ReactDOM.render(<SearchInput />,document.getElementById("container"));
+  
