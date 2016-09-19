@@ -26,3 +26,27 @@
   });
   ReactDOM.render(<TestPlugin />,document.getElementById("container"));
   
+/*
+  react学习(二)
+  组件的PropTypes属性
+  编写组件时保证组件被正确使用变得非常有用,React的PropTypes属性可以对组件的属性值进行限定
+  propTypes的常用值
+  React.PropTypes.array|React.PropTypes.array.isRequired
+  React.PropTypes.bool|React.PropTypes.bool.isRequired
+  React.PropTypes.func|React.PropTypes.func.isRequired
+  React.PropTypes.number|React.PropTypes.number.isRequired
+  React.PropTypes.object|React.PropTypes.object.isRequired
+  React.PropTypes.string|React.PropTypes.string.isRequired
+  this.props代表组件的属性
+*/
+  var MyTitle=React.createClass({
+    propTypes:{//此处propTypes为小写小写小写!!!
+      title:React.PropTypes.string.isRequired,
+    },
+    render:function(){
+      return (
+        <div><span>Hello,{this.props.title}!</span></div>
+      );
+    }
+  });
+  ReactDOM.render(<MyTitle title="NBA" />,document.body);
