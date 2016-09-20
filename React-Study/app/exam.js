@@ -201,5 +201,5 @@
   shouldComponentUpdate(object nextProps,object nextState)(组件判断是否重新渲染时调用,如果没有变化则不会重新渲染)->
   componentWillUpdate->render->componentDidUpdate
   以后组件的props变化时:
-  
+  componentWillReceiveProps(object nextProps)->shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate
 */
