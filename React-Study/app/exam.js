@@ -161,4 +161,45 @@
     }
   });
   ReactDOM.render(<UnLimitPlugin />,document.getElementById("container"));
+/*
+  react学习(六)
+  css样式
+  在React中,style行内样式不再是一个简单的字符串.它是一个{}的对象,这个对象里边的key是样式名称的驼峰命名显示,
+  而value则是你想要的样式值(通常是字符串).
+  1.使用{{}}来添加css样式
+  var CssPlugin=React.createClass({
+    render:function(){
+      return (
+        <div style={{color:"red"}}>Hello World!</div>
+      );
+    }
+  });
+  2.使用变量单独定义
+  var divStyle={color:"red"};
+  var CssPlugin=React.createClass({
+    render:function(){
+      return (
+        <div style={divStyle}>Hello World!</div>
+      );
+    }
+  });
+*/
+/*
+  react学习(七)
+  组件的生命周期
+  React组件的生命周期分为三个状态:
+  Mount,英文有安装,嵌入,准备成立的意思
+  Update,这个大家都知道,更新
+  Unmount,英文意思就是卸载
+  然后React为每个状态都提供了两种处理函数:will,在进入状态之前调用和did,在进入状态之后调用
+  三种状态共计五个函数:
+  componentWillMount(),componentDidMount(),componentWillUnmount(),
+  componentWillUpdate(object nextProps,object nextState),componentDidUpdate(object prevProps,object prevState)
+  组件第一次被实例化经历以下几个阶段:
+  getDefaultProps->getInitialState->componentWillMount->render->componentDidMount
+  以后组件的state变化时:
+  shouldComponentUpdate(object nextProps,object nextState)(组件判断是否重新渲染时调用,如果没有变化则不会重新渲染)->
+  componentWillUpdate->render->componentDidUpdate
+  以后组件的props变化时:
   
+*/
