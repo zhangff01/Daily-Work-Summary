@@ -15,6 +15,9 @@
   使用组件
   ReactDOM.render(<TestPlugin />,document.getElementById("id"));
   第一个参数为编写的组件,第二个为组件要放在页面上的位置
+  
+  jsx遇到(,会解析HTML
+     遇到{,会解析成JavaScript
 */
   var TestPlugin=React.createClass({
     render:function(){
@@ -114,4 +117,48 @@
     }
   });
   ReactDOM.render(<SearchInput />,document.getElementById("container"));
+/*
+  react学习(五)
+  React组件之表单元素的组件
+  约束性组件和非约束性组件的区分(使用value之分)
+  非约束性组件:其value值由原生的DOM管理.用户输入A -> 显示A
+  约束性组件:其value值由React管理.用户输入A -> 触发onChange事件 -> 事件处理函数中设置state.name=A -> 渲染标签并显示A
+  
+  不设置value(或者设置value=null)的组件是非约束性组件,此时如果想设置默认值可以使用defaultValue="sth"实现
+  类型为radio,checkbox的<input />可以使用defaultChecked,<textarea />,<select />可以使用defaultValue.
+  
+  onChange事件中通过event.target.value来读取用户输入的值
+*/
+  var LimitPlugin=React.createClass({
+    getInitialState:function(){
+      return {
+        value:"Hello World!"
+      };
+    },
+    handleChange:function(event){
+      this.setState({
+        value:event.target.value
+      });
+      //如果把上面一段代码注释掉,不做任何处理,则组件为不可编辑状态
+    },
+    render:function(){
+      return (
+        <div>
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </div>
+      );
+    }
+  });
+  ReactDOM.render(<LimitPlugin />,document.getElementById("container"));
+  
+  var UnLimitPlugin=React.createClass({
+    render:function(){
+      return (
+        <div>
+          <input type="text" defaultValue="Hello NBA!" />
+        </div>  
+      );
+    }
+  });
+  ReactDOM.render(<UnLimitPlugin />,document.getElementById("container"));
   
