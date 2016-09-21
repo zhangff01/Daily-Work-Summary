@@ -203,3 +203,43 @@
   以后组件的props变化时:
   componentWillReceiveProps(object nextProps)->shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate
 */
+  var CounterPlugin=React,createClass({
+    propsTypes:{
+      title:React.PropsTypes.string
+    },
+    getDefaultProps:function(){
+      console.log("getDefaultProps...");
+      return {
+        title:"A Counter",
+        step:1
+      };
+    },
+    getInitialState:function(){
+      console.log("getInitialState...");
+      return {
+        num:0
+      };
+    },
+    handleClick:function(value){
+      var count=this.state.num+value;
+      this.setState({
+        num:count
+      });
+    },
+    componentWillMount:function(){
+      console.log("componentWillMount...");
+    },
+    render:function(){
+      console.log("render...");
+      var step=this.props.step;
+      return (
+          <div>
+            <h2>{this.props.title}</h2>
+            <div>{this.state.num}</div>
+            <input type="button" value="+" onClick={this.handleClick.bind(this,step)} />
+            <input type="button" value="-" onClick={this.handleClick.bind(this,-step)} />
+          </div>>
+        );
+    }
+  });
+  ReactDOM.render(<CounterPlugin />,document.getElementById("container"));
