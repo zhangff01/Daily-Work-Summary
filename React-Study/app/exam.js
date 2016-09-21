@@ -203,9 +203,9 @@
   以后组件的props变化时:
   componentWillReceiveProps(object nextProps)->shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate
 */
-  var CounterPlugin=React,createClass({
-    propsTypes:{
-      title:React.PropsTypes.string
+  var CounterPlugin=React.createClass({
+    propTypes:{
+      title:React.PropTypes.string
     },
     getDefaultProps:function(){
       console.log("getDefaultProps...");
@@ -238,8 +238,19 @@
             <div>{this.state.num}</div>
             <input type="button" value="+" onClick={this.handleClick.bind(this,step)} />
             <input type="button" value="-" onClick={this.handleClick.bind(this,-step)} />
-          </div>>
+          </div>
         );
+    },
+    componentDidMount:function(){
+      console.log("componentDidMount...");
     }
   });
   ReactDOM.render(<CounterPlugin />,document.getElementById("container"));
+/*
+  上面一段代码加载之后,在console控制台可以看到以此打印:
+  getDefaultProps...
+  getInitialState...
+  componentWillMount...
+  render...
+  componentDidMount...
+*/
