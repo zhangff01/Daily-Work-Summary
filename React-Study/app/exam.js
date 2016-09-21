@@ -1,6 +1,6 @@
 /*
   react学习(一)
-  个人理解,React组件分为两部分,即编写组件和使用组件
+  个人理解,开发React组件分为两部分,即编写组件和使用组件
   编写组件 
   var TestPlugin(组件名,首字母需要大写)=React.createClass({
     render:function(){
@@ -243,6 +243,20 @@
     },
     componentDidMount:function(){
       console.log("componentDidMount...");
+    },
+    shouldComponentUpdate:function(nextProps,nextState){
+      console.log("shouldComponentUpdate...");
+      if(this.state.num===nextState.num){
+        return false;
+      }else{
+        return true;
+      }
+    },
+    componentWillUpdate:function(){
+        console.log("componentWillUpdate...");
+    },
+    componentDidUpdate:function(){
+        console.log("componentDidUpdate...");
     }
   });
   ReactDOM.render(<CounterPlugin />,document.getElementById("container"));
@@ -253,4 +267,31 @@
   componentWillMount...
   render...
   componentDidMount...
+  然后每次单击 +/- 按钮时可以看到console控制台会依次打印出:
+  shouldComponentUpdate...
+  componentWillUpdate...
+  render...
+  componentDidUpdate...
+  
+  componentWillMount函数调用时,this.refs对象为空对象,如果在此函数中调用this.setState,则会更新state对象,相当于会覆盖getInitialState
+  函数返回的对象信息,虽然这样做没有什么意义.
+  
+  componentDidMount是非常常用的生命周期方法,仅当组件被挂载后调用一次,这意味着可以在这个函数中进行一些DOM操作等,
+  比如希望组件中的一个textbox可以再挂载后自动获取焦点.
+  
+  componentWillReceiveProps在将要接受新的props时被调用,不是说props是不可变状态吗?
+  情况通常是这样的,当一个父组件包含了一个子组件,子组件的一个props的值是父组件的states的值,
+  那么当父组件可变状态改变时,子组件的props也更新了,于是调用了这个函数.
+  这个生命周期函数componentWillReceiveProps提供了更新states的机会,可以调用this.setState,
+  也是唯一可以在组件更新周期中调用this.setState的函数.
+  
+  shouldComponentUpdate是在更新前根据该函数的返回值决定是否进行这次更新.
+  shouldComponentUpdate (nextProps, nextState) {
+    // 比较props或者state，返回true则更新照常，返回false则取消更新，且不会调用下面的两个生命周期函数
+  }
+  注意:绝对不要在componentWillUpdate和componentDidUpdate中调用this.setState方法,否则将导致无限循环调用.
+  
+  componentWillUnmount会在组件即将从挂载点移去时调用.
+  
+  **以上这段文字来自于 —— ／leozdgao（简书作者）原文链接：http://www.jianshu.com/p/788a82dac136**
 */
