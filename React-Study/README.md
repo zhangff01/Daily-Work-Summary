@@ -147,10 +147,9 @@
  
  约束性组件:其value值由React管理.用户输入A -> 触发onChange事件 -> 事件处理函数中设置state.name=A -> 渲染标签并显示A
   
- 
  不设置value(或者设置value=null)的组件是非约束性组件,此时如果想设置默认值可以使用defaultValue="sth"实现
  
- 类型为radio,checkbox的<input />可以使用defaultChecked,<textarea />,<select />可以使用defaultValue.
+ 类型为radio,checkbox的<input />可以使用defaultChecked,<textarea />,<select />可以使用defaultValue
   
  onChange事件中通过event.target.value来读取用户输入的值
  
