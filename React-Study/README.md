@@ -149,7 +149,7 @@
   
  不设置value(或者设置value=null)的组件是非约束性组件,此时如果想设置默认值可以使用defaultValue="sth"实现
  
- 类型为radio,checkbox的<input />可以使用defaultChecked,<textarea />,<select />可以使用defaultValue
+ 类型为radio,checkbox的input可以使用defaultChecked,textarea,select可以使用defaultValue
  
  代码:
  ```javascript
