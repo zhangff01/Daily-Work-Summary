@@ -9,4 +9,7 @@
   jq 1.6+还可以这样写:
   $("#id|.class").prop("checked",true);//返回true/false;
 4.clear是document的一个方法,所以自己定义的方法不可使用这个名字
-5.
+5.函数有一个很有意思的属性————参数数量,该属性指明函数声明时可接收的参数数量,在js中,该属性名为length
+  var a = function(a,b,c){};
+  a.length==3;//true
+  
