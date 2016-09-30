@@ -20,6 +20,8 @@
 
    事件循环 process.nextTick  有什么任务不能在当下执行完，需要交给下次事件循环响应,比如占用大量cpu的一个IO密集型运算...
    
+   process.cwd() 是当前执行node命令时候的文件夹地址
+   
    (二).console
    
    Node内置的控制台标准输出模块,向标准输出流 (stdout)和标准错误流(stderr)输出错误
@@ -49,6 +51,8 @@
    (六).__dirname
 
    获取当前执行脚本所在的目录,同上,也是node.js中的魔术变量.(注意这里是获取脚本所在的目录名,而__filename是获取路径)
+   
+   __dirname 是被执行的js 文件的地址
    
    (七).module
 
