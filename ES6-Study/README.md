@@ -16,7 +16,7 @@
   
   param=>{},一个参数时可以省略().
   
-  (param...)=>{},标准写法.单行表达式可以省略{},如(a,b)=>a*b;但是多行或者retur时不能省略{}.
+  (param...)=>{},标准写法.单行表达式可以省略{},如(a,b)=>a*b;但是多行或者return时不能省略{}.
   
   示例:
   ```javascript
@@ -202,3 +202,8 @@
   ```
   逗号,代表分割了默认导出和命名导出.
   
+  参考文章:
+  
+  [brizer的博客](http://blog.csdn.net/mevicky/article/details/49942559)
+  
+  [言川的博客](http://blog.csdn.net/lihongxun945/article/details/49031383)
