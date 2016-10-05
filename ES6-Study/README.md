@@ -146,8 +146,59 @@
 ##ES6学习(五):模块(Module)
   modules规范分两部分，一部分是如何导出，一部分是如何导入.
   
-  导出:
+  1.基本用法
   
+  直接在要导出的变量或者函数之前加上export即将之导出.
   
+  文件a.js:
+  ```javascript
+  export var tempstr="Hello World!";
+  export var square=(height,length)=>height*length;
+  ```
+  2.先声明再导出
+  ```javascript
+  var tempstr="Hello World!";
+  var square=(height,length)=>height*length;
+  export {tempstr,square};
+  ```
+  在文件b.js中可以这样引用:
+  ```javascript
+  import {tempstr,square} from './a'
+  console.log(tempstr);
+  console.log(square(3,4));
+  //或者全部导入导出的内容,而不需要使用形如{,,,,}这样的语法
+  import * as a from './a' | import './a' as a
+  console.log(a.tempstr);
+  console.log(a.square(3,4));
+  ```
+  3.默认导出
   
+  一个模块只能有一个默认输出，因此export deault命令只能使用一次.
+  ```javascript
+  //module.js
+  export default function(name){
+    console.log(name);
+  }
+  ```
+  ```javascript
+  //app.js
+  import fn1 from './module'//等同于import {default as fn1} from './module'
+  fn1();
+  ```
+  4.默认导出和命名导出结合
+  ```javascript
+  //module.js
+  var a=1;
+  export default a;
+  export function add(x,y){
+    console.log("count is:"+(x+y));
+  }
+  ```
+  导入:
+  ```javascript
+  import a|othername,{add} from './module'
+  console.log(a|othername);
+  add();
+  ```
+  逗号,代表分割了默认导出和命名导出.
   
