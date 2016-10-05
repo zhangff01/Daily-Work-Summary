@@ -120,6 +120,24 @@
   js_coder.style();
   js_coder.sayHello();//调用继承的方法
   ```
+##ES6学习(三):增强对象字面量(对象可以继承)
+  用法:
+  ```javascript
+  //通过对象字面量创建对象
+  var human = {
+    breathe() {
+      console.log('breathing...');
+    }
+  };
+  var worker={
+    __proto__:human,
+    title:"Hello World!",
+    work(){
+      console.log(this.title);
+    }
+  }
+  ```
+##ES6学习(四):let和const
   
 
   
