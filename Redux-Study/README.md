@@ -123,4 +123,6 @@
   ```
   store.subscribe方法返回一个函数,调用这个函数就可以解除监听.
 ##Redux(三)
+  Reducer的拆分和合并
+  
   
