@@ -125,4 +125,69 @@
 ##Redux(三)
   Reducer的拆分和合并
   
+  Reducer函数负责生成State.由于整个应用只有一个State对象,对于大型的应用来说,这个State必然十分庞大,导致Reducer函数也十分庞大.
+  ```javascript
+  let reducer=(state=defaultState,action)=>{
+    let type=action.type;
+    let payload=action.payload;
+    switch(type){
+      case 'add':
+        return Object.assign({},state,{addinfo:payload});
+      case 'up':
+        return Object.assign({},state,{upinfo:payload});
+      case 'del':
+        return Object.assign({},state,{delinfo:payload});
+      default:
+        return state;
+    }
+  };
+  ```
+  上述代码分别改变了state的三个属性,而三个属性又是独立的,所以我们可以把Reducer拆分写.
+  
+  Redux提供了一个combineReducers方法,用于Reducer的拆分.你只要定义各个子Reducer函数,然后用这个方法,将它们合成一个大的 Reducer.
+  ```javascript
+  import {combineReducers} from 'redux';
+  let addinfo=reducer(state,action)=>{
+    switch(action.type){
+      case 'addinfo':
+        return Object.assign({},state,{addinfo:action.payload});
+      default:
+        return state;
+    }
+  };
+  let delinfo=reducer(state,action)=>{
+    switch(action.type){
+      case 'delinfo':
+        return Object.assign({},state,{delinfo:action.payload});
+      default:
+        return state;
+    }
+  };
+  let upinfo=reducer(state,action)=>{
+    switch(action.type){
+      case 'upinfo':
+        return Object.assign({},state,{upinfo:action.payload});
+      default:
+        return state;
+    }
+  };
+  let allreduce=combineReducers({
+    addinfo,
+    upinfo,
+    delinfo
+  });
+  export default allreduce;
+  ```
+  这种写法有一个前提,就是State的属性名必须与子Reducer同名.如果不同名,就要采用下面的写法:
+  ```javascript
+  let allreducers=combineReducers({
+    addinfo:子reducer1,
+    upinfo:子reducer2,
+    delinfo:子reducer3
+  });
+  ```
+##Redux(四)
+  示例:计数器
+  
+  
   
