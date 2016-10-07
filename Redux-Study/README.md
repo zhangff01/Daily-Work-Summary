@@ -188,6 +188,34 @@
   ```
 ##Redux(四)
   示例:计数器
-  
-  
+  ```javascript
+  import {createStore} from 'redux';
+  import {ReactDOM} from 'react-dom';
+  let Counter=({value})=>{return (
+    <div>
+      <h2>{value}</h2>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+    </div>
+  )};
+  let reducer=(state=0,action)=>{
+    switch(action.type){
+      case 'INCREMENT':
+        return state+1;
+      case 'DECREMENT':
+        return state-1;
+      default:
+        return state;
+    }
+  };
+  let store=createStore(reducer);
+  let render=()=>{
+    ReactDOM.render(<Counter 
+      value={store.getState()}
+      increment={()=>{return store.dispatch({type:'INCREMENT'})}}
+      decrement={()=>{return store.dispatch({type:'DECREMENT'})}}
+    />,document.getElementById('body'));
+  };
+  ```
+  参考文章:[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
   
