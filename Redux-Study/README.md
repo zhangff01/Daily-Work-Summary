@@ -258,36 +258,7 @@
 	  plugins:[]
   };
   ```
-  Package.json:
+  Package.json:[查看](https://github.com/zhangff01/Daily-Work-Summary/blob/master/Redux-Study/package.json)
   
-  ```javascript
-  {
-  	"name": "react_test",
-  	"version": "1.0.0",
-  	"description": "react ",
-  	"main": "exam.js",
-  	"scripts": {
-    		"build": "webpack --progress -color --watch", 
-    		"test": "echo \"Error: no test specified\" && exit 1"
-  	},
-  	"keywords": [
-    		"react",
-    		"webpack"
-  	],
-  	"author": "zhangff01",
-  	"license": "ISC",
-  	"devDependencies": {
-    		"babel-core": "^6.17.0",
-    		"babel-loader": "^6.2.5",
-    		"babel-preset-es2015": "^6.16.0",
-    		"babel-preset-react": "^6.16.0",
-    		"babel-preset-stage-0": "^6.16.0",
-    		"react": "^15.3.2",
-    		"react-dom": "^15.3.2",
-    		"redux": "^3.6.0",
-    		"webpack": "^1.13.2"
-  	}
-  }
-  ```
   主要参考文章:[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
   
