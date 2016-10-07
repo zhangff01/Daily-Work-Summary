@@ -235,7 +235,7 @@
   store.subscribe(render);
   ```
   Package.json:
-  ```json
+  ```javascript
   {
   "name": "react_test",
   "version": "1.0.0",
