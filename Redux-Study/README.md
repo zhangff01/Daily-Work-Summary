@@ -190,15 +190,28 @@
   示例:计数器
   ```javascript
   import {createStore} from 'redux';
-  import {ReactDOM} from 'react-dom';
-  let Counter=({value})=>{return (
-    <div>
-      <h2>{value}</h2>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
-    </div>
-  )};
-  let reducer=(state=0,action)=>{
+  import React,{Component,PropTypes} from 'react';
+  import ReactDOM from 'react-dom';
+  
+  class Counter extends Component {
+    static propTypes={//静态属性是ES7的提案,ES6目前只支持静态方法
+      value: React.PropTypes.number.isRequired,
+      increment: React.PropTypes.func.isRequired,
+      decrement: React.PropTypes.func.isRequired
+    }
+    render(){
+      const {value,increment,decrement}=this.props;
+      return (
+          <div>
+            <h2>{value}</h2>
+            <button onClick={increment}>+</button>
+            <button onClick={decrement}>-</button>
+          </div>
+        );      
+    }
+  }
+  
+  const reducer=(state=0,action)=>{
     switch(action.type){
       case 'INCREMENT':
         return state+1;
@@ -208,14 +221,75 @@
         return state;
     }
   };
-  let store=createStore(reducer);
-  let render=()=>{
+  
+  const store=createStore(reducer);
+  const render=()=>{
     ReactDOM.render(<Counter 
       value={store.getState()}
-      increment={()=>{return store.dispatch({type:'INCREMENT'})}}
-      decrement={()=>{return store.dispatch({type:'DECREMENT'})}}
-    />,document.getElementById('body'));
+      increment={()=>{return store.dispatch({type:'INCREMENT'});}}
+      decrement={()=>{return store.dispatch({type:'DECREMENT'});}}
+    />,document.getElementById('container'));
+  };
+  
+  render();
+  store.subscribe(render);
+  ```
+  Package.json:
+  ```json
+  {
+  "name": "react_test",
+  "version": "1.0.0",
+  "description": "react ",
+  "main": "exam.js",
+  "scripts": {
+    "build": "webpack --progress -color --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "webpack"
+  ],
+  "author": "zhangff01",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "jsx-loader": "^0.13.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "redux": "^3.6.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
+  }
+}
+  ```
+  webpack.config.js:
+  ```javascript
+  var webpack=require("webpack");
+  var path=require("path");
+
+  module.exports={
+	  entry:'./app/Reduxexam.js',
+	  output:{
+		  path:path.join(__dirname,'lib'),
+		  filename:'bundle.js'
+	  },
+	  module:{
+		  loaders:[{
+			      test:/\.js?$/,
+            exclude:/node_modules/,
+            loader:'babel',
+            query:{
+            	presets:['react','es2015','stage-0']
+            }
+		  }]
+	  },
+	  plugins:[]
   };
   ```
-  参考文章:[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
+  主要参考文章:[阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
   
