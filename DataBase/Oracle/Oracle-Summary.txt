@@ -21,4 +21,12 @@
           tablename tb order by tb.sort asc|desc
         ) temp where temp.rowno<=10*K
       ) temp2 where temp2.rowno>10*(K-1)
-8.
+8.connect by start with 从下往上的树形结查询
+    select ps.sortid, ps.sortname
+      from product_sort ps
+connect by prior parentid = sortid
+start with sortid = '125'
+  公式:
+    select * from table
+    connect by prior 父节点=子节点
+    start with 子节点=子节点值
