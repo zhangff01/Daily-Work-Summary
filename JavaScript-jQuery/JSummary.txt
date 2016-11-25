@@ -12,4 +12,6 @@
 5.函数有一个很有意思的属性————参数数量,该属性指明函数声明时可接收的参数数量,在js中,该属性名为length
   var a = function(a,b,c){};
   a.length==3;//true
-  
+6.有关 event 和 window.event
+  在IE/Opera中,是window.event,而在Firefox中,是event
+  而事件的对象,在IE中是window.event.srcElement,在Firefox中是event.target,而在Opera中则两者都支持.
