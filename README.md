@@ -1,2 +1,2 @@
 # Daily-Work-Summary
-每日工作总结
+工作总结
