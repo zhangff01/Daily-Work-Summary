@@ -15,3 +15,11 @@
 6.有关 event 和 window.event
   在IE/Opera中,是window.event,而在Firefox中,是event
   而事件的对象,在IE中是window.event.srcElement,在Firefox中是event.target,而在Opera中则两者都支持.
+7.在FF浏览器中使用代码动态触发点击事件不起作用的解决办法
+  if(document.all){
+    document.getElementById(name).click(); 
+  }else{
+    var evt=document.createEvent("MouseEvents");
+    evt.initEvent("click",true,true);
+    document.getElementById(name).dispatchEvent(evt);
+  }
