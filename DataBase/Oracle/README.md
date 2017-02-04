@@ -1,4 +1,4 @@
-#//工作中遇到的oracle数据库总结
+#工作中遇到的oracle数据库总结
 #1.oracle数据库不支持
 
   insert into tablename (字段1,字段2) values ((值1,值2),(值1,值2)) 这种批量插入    --（oracle,sql server不支持,mysql支持）
