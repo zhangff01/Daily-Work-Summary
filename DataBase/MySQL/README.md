@@ -82,3 +82,20 @@ concat_ws(separator,str1,str2),concat_ws(',',str1,str2):str1,str2
 substring(str,pos)和substring(str,pos,length) 
 
 说明:substring(被截取字段,从第几位开始截取)  substring(被截取字段,从第几位开始截取,截取长度) 
+##控制流函数
+###nullif(x,y)
+如果x==y,则返回null,否则返回x
+###ifnull(x,y)
+如果x不为空,则返回x,x为空返回y  (和oracle里面的nvl()函数是一样的)
+###if(test,x,y)
+如果test为真,返回x,否则返回y
+###case...when
+```sql
+case 字段
+when 条件 then result1
+when 条件2 then result2
+...
+else default result
+end
+```
+常常和select查询语句一起用
