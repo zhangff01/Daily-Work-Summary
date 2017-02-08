@@ -99,9 +99,24 @@ else default result
 end
 ```
 常常和select查询语句一起用
-##索引index
-tips:对于什么时候添加B+树索引,一般的经验是如果这个字段的取值范围很大,则比较适合建立索引,比如人们的姓名;如果字段的取值范围很小
+##索引index(主键是默认建立了索引的)
+tips:对于什么时候添加B+树索引,一般的经验是如果这个字段的取值范围很大,则比较适合建立索引,比如人们的姓名;
 
-比如人们的性别,取值范围只有男女,则不适合建立索引,还有一种参考方法就是对字段建立索引然后通过show index from tablename查看该索引
+如果字段的取值范围很小,比如人们的性别,取值范围只有男女,则不适合建立索引,
 
-的cardinality值(这个是预估值),一般来说此值越接近1越适合建立索引,如果很大则不适合。
+还有一种参考方法就是对字段建立索引然后通过show index from tablename,
+
+查看该索引的cardinality值(这个是预估值),一般来说此值越大越适合建立索引.
+###创建索引
+普通索引(index,数据可以重复):alter table tablename add index 索引名称 (字段(长度));
+
+唯一索引(unique,唯一索引,要求所有记录都唯一):alter table tablename add unique 索引名称 (字段(长度));
+
+主键索引(primary key,在唯一索引的基础上相应的列必须为主键,所以一张表只有一个主键索引):
+
+alter table tablename add primary key 索引名称 (字段(长度));
+###删除索引
+```sql
+alter table tablename drop index 索引名称
+alter table tablename drop primary key  //删除主键索引
+```
