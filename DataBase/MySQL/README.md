@@ -120,3 +120,28 @@ alter table tablename add primary key 索引名称 (字段(长度));
 alter table tablename drop index 索引名称
 alter table tablename drop primary key  //删除主键索引
 ```
+##子查询
+比较子查询(>,<,=,>=,<=,!=,<>后跟子查询):any,all,some;in和= any等价,not in和!= all等价
+
+exists子查询(如果子查询返回行,则为true,否则返回false,子查询为显示select null时也会为true)
+```sql
+select column... from tablename where exists (子查询) 
+```
+##存储过程
+###创建存储过程
+```sql
+delimiter $
+drop procedure if exists 存储过程名称$
+create procedure 存储过程名称()(
+ [in|out|inout] 参数1 datatype,
+ [in|out|inout] 参数2 datatype...
+)
+begin
+ mysql语句;//sql语句后的分号;是必须要加的
+end$
+delimiter ;
+```
+###使用存储过程
+```sql
+call 存储过程();
+```
