@@ -131,17 +131,21 @@ select column... from tablename where exists (子查询)
 ###创建存储过程
 ```sql
 delimiter $
-drop procedure if exists 存储过程名称$
-create procedure 存储过程名称()(
+drop procedure [if exists] 存储过程名称 $
+create procedure 存储过程名称(
  [in|out|inout] 参数1 datatype,
  [in|out|inout] 参数2 datatype...
 )
 begin
  mysql语句;//sql语句后的分号;是必须要加的
-end$
+end $
 delimiter ;
 ```
 ###使用存储过程
 ```sql
-call 存储过程();
+call 存储过程(参数1...)
+```
+###删除存储过程
+```sql
+drop procedure [if exists] 存储过程名称
 ```
