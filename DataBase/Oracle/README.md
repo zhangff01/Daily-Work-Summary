@@ -1,4 +1,4 @@
-#工作中遇到的oracle数据库总结
+# 工作中遇到的oracle数据库总结
 # 1.oracle数据库不支持
 
   insert into tablename (字段1,字段2) values ((值1,值2),(值1,值2)) 这种批量插入    --（oracle,sql server不支持,mysql支持）
@@ -18,12 +18,12 @@
 # 6.sysdate,sys_guid():插入系统时间,自动生成uuid
 # 7.效率比较高的sql分页
  
-##不带排序:
+## 不带排序:
 
 ```sql
   select temp.* from (select rownum as rowno,tb.* from tablename tb where rowno<=10*K) temp where temp.rowno>10*(K-1)
 ```
-##带有排序的:
+## 带有排序的:
 ```sql
     select temp2.* from 
       (select temp.* from 
